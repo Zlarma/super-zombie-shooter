@@ -1,0 +1,22 @@
+{
+  "name": "super-zombie-shooter",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zlarma/super-zombie-shooter.git"
+  },
+  "keywords": [
+    "Game"
+  ],
+  "author": "Daniel, João Paulo, Nícollas Lopes, Mateus Krieger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Zlarma/super-zombie-shooter/issues"
+  },
+  "homepage": "https://github.com/Zlarma/super-zombie-shooter#readme",
+  "description": ""
+}
