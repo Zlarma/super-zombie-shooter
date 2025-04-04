@@ -1,0 +1,11 @@
+body{
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+canvas{
+    background-color: gray;
+}
