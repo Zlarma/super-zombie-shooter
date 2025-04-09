@@ -18,36 +18,63 @@ class Player extends Obj{
     pts = 0
     altura_dano = 500
     fase = 1
-    colid(objeto){
-        return this.altura_dano == objeto.y
-    }
     moverParaCursor(x){
-        this.x = x - 70; // Centraliza a arma no cursor
+        this.x = x - 70 // Centraliza a arma no cursor
     }
 }
 
 class Zombie extends Obj{
     movendo = true
-    mov_zombie(velocidade){
-        if (this.movendo == true){
-            if(velocidade == 1){
-                this.w += 1
-                this.h += 1
-            } else if(velocidade == 2){
-                this.w += 2
-                this.h += 2
-            } else if(velocidade == 3){
-                this.w += 3
-                this.h += 3
-            } else if(velocidade == 4){
-                this.w += 4
-                this.h += 4
-            }
+    danoInterval = null
+    mov_zombie(player){
+        if(player.pts >= 2500){
+            this.w += 12
+            this.h += 12
+        } else if(player.pts >= 2250){
+            this.w += 10
+            this.h += 10
+        } else if(player.pts >= 2000){
+            this.w += 9
+            this.h += 9
+        } else if(player.pts >= 1750){
+            this.w += 8
+            this.h += 8
+        } else if (player.pts >= 1500) {
+            this.w += 7
+            this.h += 7
+        } else if (player.pts >= 1250) {
+            this.w += 6
+            this.h += 6
+        } else if (player.pts >= 1000) {
+            this.w += 5
+            this.h += 5
+        } else if (player.pts >= 750) {
+            this.w += 4
+            this.h += 4
+        } else if (player.pts >= 500) {
+            this.w += 3
+            this.h += 3
+        } else if (player.pts >= 250) {
+            this.w += 2
+            this.h += 2
+        } else {
+            this.w += 1
+            this.h += 1
         }
-        if(this.w >= 600){
+
+        if(this.w >= 500){
             this.movendo = false
-            this.w = 600
-            this.h = 600
+            this.w = 500
+            this.h = 500
+            
+            if (!this.danoInterval) {
+                this.danoInterval = setInterval(() => {
+                    player.vida -= 5
+                    if (player.vida <= 0) {
+                        clearInterval(this.danoInterval) // Para o intervalo se a vida do jogador chegar a 0
+                    }
+                }, 1000)
+            }
         }
 
     }
@@ -55,7 +82,11 @@ class Zombie extends Obj{
         this.movendo = true
         this.w = 100
         this.h = 100
-        this.x = Math.floor(Math.random() * (1400 - this.w))
+        this.x = Math.floor(Math.random() * (1200 - this.w))
+        if (this.danoInterval) {
+            clearInterval(this.danoInterval)
+            this.danoInterval = null
+        }
     }
 }
 
