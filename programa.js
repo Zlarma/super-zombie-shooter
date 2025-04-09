@@ -11,42 +11,76 @@ let t2 = new Text()
 let t3 = new Text()
 let t4 = new Text()
 
-console.log(zom1)
+let gameOver = false
 
 document.addEventListener("mousemove", (event) => {
-    let rect = tela.canvas.getBoundingClientRect();
-    let mouseX = event.clientX - rect.left;
-    if(mouseX > 1070){
-        player.moverParaCursor(1070);
-    } else if(mouseX < 70){
-        player.moverParaCursor(70);
+    let rect = tela.canvas.getBoundingClientRect()
+    let mouseX = event.clientX - rect.left
+    if (mouseX > 1070) {
+        player.moverParaCursor(1070)
+    } else if (mouseX < 70) {
+        player.moverParaCursor(70)
     } else {
-        player.moverParaCursor(mouseX);
+        player.moverParaCursor(mouseX)
     }
-});
+})
+
 document.addEventListener("click", (event) => {
-    let rect = tela.canvas.getBoundingClientRect();
-    let mouseX = event.clientX - rect.left;
-    let mouseY = event.clientY - rect.top;
-    if(mouseX >= zom1.x && mouseX <= zom1.x + zom1.w && mouseY >= zom1.y && mouseY <= zom1.y + zom1.h){
+    if (gameOver) return
+
+    let rect = tela.canvas.getBoundingClientRect()
+    let mouseX = event.clientX - rect.left
+    let mouseY = event.clientY - rect.top
+    if (mouseX >= zom1.x && mouseX <= zom1.x + zom1.w && mouseY >= zom1.y && mouseY <= zom1.y + zom1.h) {
         zom1.recomeca()
         player.pts += 10
-    } else if(mouseX >= zom2.x && mouseX <= zom2.x + zom2.w && mouseY >= zom2.y && mouseY <= zom2.y + zom2.h){
+    } else if (mouseX >= zom2.x && mouseX <= zom2.x + zom2.w && mouseY >= zom2.y && mouseY <= zom2.y + zom2.h) {
         zom2.recomeca()
         player.pts += 10
-    } else if(mouseX >= zom3.x && mouseX <= zom3.x + zom3.w && mouseY >= zom3.y && mouseY <= zom3.y + zom3.h){
+    } else if (mouseX >= zom3.x && mouseX <= zom3.x + zom3.w && mouseY >= zom3.y && mouseY <= zom3.y + zom3.h) {
         zom3.recomeca()
         player.pts += 10
     }
-    
 })
 
-let desenha = () => {
+let restartButton = document.getElementById('restartButton')
 
-    tela.fillStyle = "white";
-    tela.font = "24px Arial";
-    tela.fillText(`Vida: ${player.vida}`, 20, 30);
-    tela.fillText(`Pontos: ${player.pts}`, 20, 60);
+restartButton.addEventListener('click', () => {
+    
+    player.vida = 100
+    player.pts = 0
+    zom1.recomeca()
+    zom2.recomeca()
+    zom3.recomeca()
+    gameOver = false
+    restartButton.style.display = "none"
+    main()
+})
+
+let exibeGameOver = () => {
+    tela.fillStyle = "rgba(0, 0, 0, 0.8)"
+    tela.fillRect(0, 0, 1500, 800)
+
+    tela.fillStyle = "white"
+    tela.font = "48px Arial"
+
+    let gameOverText = "Game Over"
+    let gameOverWidth = tela.measureText(gameOverText).width
+    tela.fillText(gameOverText, (1500 - gameOverWidth) / 2, 300)
+
+    tela.font = "36px Arial"
+    let pontosText = `Pontos: ${player.pts}`
+    let pontosWidth = tela.measureText(pontosText).width
+    tela.fillText(pontosText, (1500 - pontosWidth) / 2, 400)
+
+    restartButton.style.display = "block"
+}
+
+let desenha = () => {
+    tela.fillStyle = "white"
+    tela.font = "24px Arial"
+    tela.fillText(`Vida: ${player.vida}`, 20, 30)
+    tela.fillText(`Pontos: ${player.pts}`, 20, 60)
 
     zom1.des_img(tela)
     zom2.des_img(tela)
@@ -54,25 +88,24 @@ let desenha = () => {
     player.des_img(tela)
 }
 
-let velocidade = 1
-
 let atualiza = () => {
-    if(player.pts >= 200){
-        velocidade = 2
-    } else if(player.pts >= 500){
-        velocidade = 3
-    } else if(player.pts >= 750){
-        velocidade = 4
-    }
-    zom1.mov_zombie(velocidade)
-    zom2.mov_zombie(velocidade)
-    zom3.mov_zombie(velocidade)
+    zom1.mov_zombie(player)
+    zom2.mov_zombie(player)
+    zom3.mov_zombie(player)
 }
 
 let main = () => {
     tela.clearRect(0, 0, 1500, 800)
+
+    if (player.vida <= 0) {
+        gameOver = true
+        exibeGameOver()
+        return
+    }
+
     desenha()
     atualiza()
     requestAnimationFrame(main)
 }
+
 main()
