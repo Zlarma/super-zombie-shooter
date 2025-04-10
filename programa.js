@@ -1,10 +1,10 @@
 let tela = document.getElementById('tela').getContext('2d')
 
-let zom1 = new Zombie(0, 400, 100, 100, "./assets/zombie1.png")
-let zom2 = new Zombie(800, 400, 100, 100, "./assets/zombie1.png")
-let zom3 = new Zombie(300, 400, 100, 100, "./assets/zombie1.png")
+let zom1 = new Zombie(0, 400, 100, 100, "./assets/zumbi/zumbi_1.png")
+let zom2 = new Zombie(800, 400, 100, 100, "./assets/zumbi/zumbi_1.png")
+let zom3 = new Zombie(300, 400, 100, 100, "./assets/zumbi/zumbi_1.png")
 
-let player = new Player(800, 500, 500, 300, "./assets/arma.png")
+let player = new Player(800, 500, 500, 300, "./assets/idle_1.png")
 
 let t1 = new Text()
 let t2 = new Text()
@@ -32,12 +32,18 @@ document.addEventListener("click", (event) => {
     let mouseX = event.clientX - rect.left
     let mouseY = event.clientY - rect.top
     if (mouseX >= zom1.x && mouseX <= zom1.x + zom1.w && mouseY >= zom1.y && mouseY <= zom1.y + zom1.h) {
+        player.tiro()
+        player.atirando = true
         zom1.recomeca()
         player.pts += 10
     } else if (mouseX >= zom2.x && mouseX <= zom2.x + zom2.w && mouseY >= zom2.y && mouseY <= zom2.y + zom2.h) {
+        player.tiro()
+        player.atirando = true
         zom2.recomeca()
         player.pts += 10
     } else if (mouseX >= zom3.x && mouseX <= zom3.x + zom3.w && mouseY >= zom3.y && mouseY <= zom3.y + zom3.h) {
+        player.tiro()
+        player.atirando = true
         zom3.recomeca()
         player.pts += 10
     }
@@ -89,9 +95,27 @@ let desenha = () => {
 }
 
 let atualiza = () => {
+    if(zom1.movendo){
+        zom1.tempo += 1
+        zom1.andar('zumbi')
+    }
+    if(zom2.movendo){
+        zom2.tempo += 1
+        zom2.andar('zumbi')
+    }
+    if(zom3.movendo){
+        zom3.tempo += 1
+        zom3.andar('zumbi')
+    }
     zom1.mov_zombie(player)
     zom2.mov_zombie(player)
     zom3.mov_zombie(player)
+    if(player.atirando){
+        player.tiro("tiro")
+    } else {
+        player.anim("idle")
+        player.tempo += 1
+    }
 }
 
 let main = () => {

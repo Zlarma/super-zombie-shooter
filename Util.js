@@ -18,16 +18,69 @@ class Player extends Obj{
     pts = 0
     altura_dano = 500
     fase = 1
+    frame = 1
+    tiroFrame = 1
+    tempo = 1
+    tiroTempo = 1
+    atirando = false
     moverParaCursor(x){
         this.x = x - 70 // Centraliza a arma no cursor
+    }
+    anim(nome){
+        if(this.tempo%3==0){
+            this.frame+=1
+        }
+        if(this.frame>12){
+            this.frame=1
+        }
+        this.a = `./assets/idle/${nome}_${this.frame}.png`
+    }
+    tiro() {
+        this.tiroTempo += 1;
+        if (this.tiroTempo % 2 === 0) { // Ajusta a velocidade da animação do tiro
+            this.tiroFrame += 1;
+        }
+        if (this.tiroFrame > 7) {
+            this.tiroFrame = 1;
+            this.atirando = false
+            this.a = `./assets/idle/idle_1.png`; // Retorna à animação padrão após o tiro
+            return; // Sai da função para evitar continuar a animação do tiro
+        }
+        this.a = `./assets/tiro/tiro_${this.tiroFrame}.png`;
     }
 }
 
 class Zombie extends Obj{
     movendo = true
     danoInterval = null
+    frame = 1
+    tempo = 1
     mov_zombie(player){
-        if(player.pts >= 2500){
+        if(player.pts >= 6500){
+            this.w += 20
+            this.h += 20
+        } else if(player.pts >= 6000){
+            this.w += 19
+            this.h += 19
+        } else if(player.pts >= 5500){
+            this.w += 18
+            this.h += 18
+        } else if(player.pts >= 5000){
+            this.w += 17
+            this.h += 17
+        } else if(player.pts >= 4500){
+            this.w += 16
+            this.h += 16
+        } else if(player.pts >= 4000){
+            this.w += 15
+            this.h += 15
+        } else if(player.pts >= 3500){
+            this.w += 14
+            this.h += 14
+        } else if(player.pts >= 3000){
+            this.w += 13
+            this.h += 13
+        } else if(player.pts >= 2500){
             this.w += 12
             this.h += 12
         } else if(player.pts >= 2250){
@@ -77,6 +130,15 @@ class Zombie extends Obj{
             }
         }
 
+    }
+    andar(nome){
+        if(this.tempo%5==0){
+            this.frame+=1
+        }
+        if(this.frame>9){
+            this.frame=1
+        }
+        this.a = `./assets/zumbi/${nome}_${this.frame}.png`
     }
     recomeca(){
         this.movendo = true
