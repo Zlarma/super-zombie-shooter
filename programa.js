@@ -50,6 +50,7 @@ document.addEventListener("click", (event) => {
 })
 
 let restartButton = document.getElementById('restartButton')
+let verRankingBtn = document.getElementById('verRankingBtn')
 
 restartButton.addEventListener('click', () => {
     
@@ -60,6 +61,7 @@ restartButton.addEventListener('click', () => {
     zom3.recomeca()
     gameOver = false
     restartButton.style.display = "none"
+    verRankingBtn.style.display = "none"
     main()
 })
 
@@ -79,7 +81,29 @@ let exibeGameOver = () => {
     let pontosWidth = tela.measureText(pontosText).width
     tela.fillText(pontosText, (1500 - pontosWidth) / 2, 400)
 
+    setTimeout(() => {
+        if (confirm("Deseja salvar sua pontuação no ranking?")) {
+            const nome = prompt("Digite seu nome:")
+            if (nome) {
+                const rankingAntigo = JSON.parse(localStorage.getItem('ranking')) || []
+                salvarRanking(nome, player.pts)
+                const novoRanking = JSON.parse(localStorage.getItem('ranking'))
+    
+                const entrouNoRanking = novoRanking.some(item => item.nome === nome && item.pontuação === player.pts)
+    
+                if (entrouNoRanking) {
+                    alert("Parabéns! Você entrou no Top 10 🏆")
+                } else {
+                    alert("Sua pontuação foi registrada, mas não entrou no Top 10.")
+                }
+    
+                exibirRanking()
+            }
+        }
+    }, 100)
+
     restartButton.style.display = "block"
+    verRankingBtn.style.display = "block"
 }
 
 let desenha = () => {
