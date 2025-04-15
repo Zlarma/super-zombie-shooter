@@ -16,10 +16,10 @@ let gameOver = false
 document.addEventListener("mousemove", (event) => {
     let rect = tela.canvas.getBoundingClientRect()
     let mouseX = event.clientX - rect.left
-    if (mouseX > 1070) {
-        player.moverParaCursor(1070)
-    } else if (mouseX < 70) {
-        player.moverParaCursor(70)
+    if (mouseX > 1300) {
+        player.moverParaCursor(1300)
+    } else if (mouseX < 10) {
+        player.moverParaCursor(10)
     } else {
         player.moverParaCursor(mouseX)
     }
