@@ -24,7 +24,7 @@ class Player extends Obj{
     tiroTempo = 1
     atirando = false
     moverParaCursor(x){
-        this.x = x - 70 // Centraliza a arma no cursor
+        this.x = x - -20 // Centraliza a arma no cursor
     }
     anim(nome){
         if(this.tempo%3==0){
