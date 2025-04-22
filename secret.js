@@ -1,3 +1,4 @@
+
 let secretCode = "secret";
 let inputBuffer = "";
 // let secretSFX = new Audio('./assets/mus_create.wav')

@@ -18,8 +18,22 @@
             <div class="play">
                 <a href="./jogo.html">Jogar</a>
             </div>
+            <div class="tuto">
+                <button>Tutorial</button>
+            </div>
         </div>
 
 </body>
 
 </html>
+
+<script>
+    alert("Pequena pausa para rodar a música de menu...\n\n\n\nAperte `Ok` para ver o menu!!! ;)")
+
+    let tuto = document.querySelector('.tuto button');
+
+    tuto.addEventListener('click', function () {
+        alert("TUTORIAL???\n\nO jogo é literalmente clicar nos zumbis para eles morrerem!!!\nMas, não erre o tiro, você perde vida se errar.")
+    });
+
+</script>
