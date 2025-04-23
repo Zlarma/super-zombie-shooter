@@ -8,6 +8,7 @@ body{
 }
 canvas{
     background-color: gray;
+    cursor: url("./assets/CURSOR.png"), auto;
 }
 #restartButton {
     display: none; 
