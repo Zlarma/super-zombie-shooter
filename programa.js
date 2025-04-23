@@ -46,6 +46,8 @@ document.addEventListener("click", (event) => {
         player.atirando = true
         zom3.recomeca()
         player.pts += 10
+    } else {
+        player.vida -=2
     }
 })
 
