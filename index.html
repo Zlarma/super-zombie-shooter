@@ -1,30 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="PT-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="ranking.js" defer></script>
-    <script src="Util.js" defer></script>
-    <script src="programa.js" defer></script>
+    <link rel="stylesheet" href="styleMenu.css">
+    <link rel="icon" href="./assets/icone.png">
+    <script src="secret.js" defer></script>
     <title>Super Zombie Shooter</title>
 </head>
 
 <body>
-    <canvas id="tela" width="1500" height="800"></canvas>
-    <button id="verRankingBtn">Ver Ranking</button>
-    <button id="restartButton">Recomeçar</button>
+    <div class="container">
+        <h1><img src="./assets/SUPER.gif" alt="SUPER" id="SUPER"> <span id="ZOMBIE">Zombie Shooter</span></h1>
 
-
-    <div id="modalRanking" class="modal">
-        <div class="modal-content">
-            <span class="fechar">&times;</span>
-            <h2>Ranking</h2>
-            <ul id="listaRanking"></ul>
+        <div class="botoes">
+            <div class="play">
+                <a href="./jogo.html">Jogar</a>
+            </div>
+            <div class="tuto">
+                <button>Tutorial</button>
+            </div>
         </div>
-    </div>
 
 </body>
 
 </html>
+
+<script>
+    alert("Pequena pausa para rodar a música de menu...\n\n\n\nAperte `Ok` para ver o menu!!! ;)")
+
+    let tuto = document.querySelector('.tuto button');
+
+    tuto.addEventListener('click', function () {
+        alert("TUTORIAL???\n\nO jogo é literalmente clicar nos zumbis para eles morrerem!!!\nMas, não erre o tiro, você perde vida se errar.")
+    });
+
+</script>
