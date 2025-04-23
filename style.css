@@ -1,3 +1,7 @@
+* {
+  cursor: url("./assets/CURSOR.gif"), auto !important;
+}
+
 body {
   background-color: lightgray;
   display: flex;
@@ -9,9 +13,6 @@ body {
 
 canvas {
   background-image: url("./assets/background.png");
-  cursor: url("./assets/CURSOR.png"), auto !important;
-
-
 }
 
 #restartButton {
