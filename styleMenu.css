@@ -8,7 +8,9 @@
 
 
 body {
-    background-color: rgb(142, 142, 142);
+    background-image: radial-gradient(rgb(230, 230, 230), rgb(195, 195, 195), gray);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
     overflow: hidden;
 
 
@@ -187,4 +189,18 @@ body {
         transform: translateY(-10px) rotateY(-3deg);
     }
 
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
