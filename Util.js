@@ -23,7 +23,7 @@ class Player extends Obj {
     tiroTempo = 1
     atirando = false
     moverParaCursor(x) {
-        this.x = x - -20 // Centraliza a arma no cursor
+        this.x = x - -20
     }
     anim(nome) {
         if (this.tempo % 3 == 0) {
@@ -35,15 +35,15 @@ class Player extends Obj {
         this.a = `./assets/idle/${nome}_${this.frame}.png`
     }
     tiro() {
-        this.tiroTempo += 1;
-        if (this.tiroTempo % 2 === 0) { // Ajusta a velocidade da animação do tiro
-            this.tiroFrame += 1;
+        this.tiroTempo += 1
+        if (this.tiroTempo % 2 === 0) {
+            this.tiroFrame += 1
         }
         if (this.tiroFrame > 7) {
-            this.tiroFrame = 1;
+            this.tiroFrame = 1
             this.atirando = false
-            this.a = `./assets/idle/idle_1.png`; // Retorna à animação padrão após o tiro
-            return; // Sai da função para evitar continuar a animação do tiro
+            this.a = `./assets/idle/idle_1.png`
+            return
         }
         this.a = `./assets/tiro/tiro_${this.tiroFrame}.png`;
     }
@@ -54,6 +54,8 @@ class Zombie extends Obj {
     danoInterval = null
     frame = 1
     tempo = 1
+    attackFrame = 1
+    attackTempo = 1
     mov_zombie(player) {
         if (player.pts >= 6500) {
             this.w += 20
@@ -118,12 +120,11 @@ class Zombie extends Obj {
             this.movendo = false
             this.w = 500
             this.h = 500
-
             if (!this.danoInterval) {
                 this.danoInterval = setInterval(() => {
                     player.vida -= 5
                     if (player.vida <= 0) {
-                        clearInterval(this.danoInterval) // Para o intervalo se a vida do jogador chegar a 0
+                        clearInterval(this.danoInterval)
                     }
                 }, 1000)
             }
@@ -147,6 +148,18 @@ class Zombie extends Obj {
         if (this.danoInterval) {
             clearInterval(this.danoInterval)
             this.danoInterval = null
+        }
+    }
+    attack() {
+        if (!this.movendo) {
+            this.attackTempo += 1
+            if (this.attackTempo % 8 === 0) {
+                this.attackFrame += 1
+            }
+            if (this.attackFrame > 8) {
+                this.attackFrame = 1
+            }
+            this.a = `./assets/attack/attack_${this.attackFrame}.png`
         }
     }
 }

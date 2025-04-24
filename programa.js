@@ -152,7 +152,9 @@ let main = () => {
         exibeGameOver()
         return
     }
-
+    zom1.attack()
+    zom2.attack()
+    zom3.attack()
     desenha()
     atualiza()
     requestAnimationFrame(main)
