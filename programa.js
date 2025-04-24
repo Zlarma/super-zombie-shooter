@@ -47,7 +47,7 @@ document.addEventListener("click", (event) => {
         zom3.recomeca()
         player.pts += 10
     } else {
-        player.vida -=2
+        player.vida -= 2
     }
 })
 
@@ -55,7 +55,7 @@ let restartButton = document.getElementById('restartButton')
 let verRankingBtn = document.getElementById('verRankingBtn')
 
 restartButton.addEventListener('click', () => {
-    
+
     player.vida = 100
     player.pts = 0
     zom1.recomeca()
@@ -90,15 +90,15 @@ let exibeGameOver = () => {
                 const rankingAntigo = JSON.parse(localStorage.getItem('ranking')) || []
                 salvarRanking(nome, player.pts)
                 const novoRanking = JSON.parse(localStorage.getItem('ranking'))
-    
+
                 const entrouNoRanking = novoRanking.some(item => item.nome === nome && item.pontuação === player.pts)
-    
+
                 if (entrouNoRanking) {
                     alert("Parabéns! Você entrou no Top 10 🏆")
                 } else {
                     alert("Sua pontuação foi registrada, mas não entrou no Top 10.")
                 }
-    
+
                 exibirRanking()
             }
         }
@@ -121,22 +121,22 @@ let desenha = () => {
 }
 
 let atualiza = () => {
-    if(zom1.movendo){
+    if (zom1.movendo) {
         zom1.tempo += 1
         zom1.andar('zumbi')
     }
-    if(zom2.movendo){
+    if (zom2.movendo) {
         zom2.tempo += 1
         zom2.andar('zumbi')
     }
-    if(zom3.movendo){
+    if (zom3.movendo) {
         zom3.tempo += 1
         zom3.andar('zumbi')
     }
     zom1.mov_zombie(player)
     zom2.mov_zombie(player)
     zom3.mov_zombie(player)
-    if(player.atirando){
+    if (player.atirando) {
         player.tiro("tiro")
     } else {
         player.anim("idle")
