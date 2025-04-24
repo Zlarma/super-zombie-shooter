@@ -6,6 +6,10 @@
     cursor: url("./assets/mira_menu.gif"), auto !important;
 }
 
+*:active{
+    cursor: url("./assets/CLICK.png"), auto !important;
+}
+
 
 body {
     background-image: radial-gradient(rgb(239, 239, 239), rgb(195, 195, 195), gray);
