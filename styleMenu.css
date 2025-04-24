@@ -6,7 +6,7 @@
     cursor: url("./assets/mira_menu.gif"), auto !important;
 }
 
-*:active{
+*:active {
     cursor: url("./assets/CLICK.png"), auto !important;
 }
 
@@ -207,4 +207,19 @@ body {
     100% {
         background-position: 0% 50%;
     }
+}
+
+/* SECRETO */
+
+
+#zombie-flash {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 6666;
+    width: 300px;
+    opacity: 1;
+    transition: opacity 0.2s ease-out;
 }
