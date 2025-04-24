@@ -3,11 +3,14 @@
     margin: 0;
     padding: 0;
     user-select: none;
+    cursor: url("./assets/mira_menu.gif"), auto !important;
 }
 
 
 body {
-    background-color: rgb(142, 142, 142);
+    background-image: radial-gradient(rgb(239, 239, 239), rgb(195, 195, 195), gray);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
     overflow: hidden;
 
 
@@ -65,7 +68,7 @@ body {
                 animation-name: jogo;
                 animation-duration: 1s;
                 animation-iteration-count: infinite;
-                animation-timing-function: cubic-bezier(0.37,-0.18, 0.66, 1.2);
+                animation-timing-function: cubic-bezier(0.37, -0.18, 0.66, 1.2);
                 animation-direction: alternate-reverse;
 
                 a {
@@ -103,7 +106,7 @@ body {
                 animation-name: jogo2;
                 animation-duration: 1s;
                 animation-iteration-count: infinite;
-                animation-timing-function: cubic-bezier(0.37,-0.18, 0.66, 1.2);
+                animation-timing-function: cubic-bezier(0.37, -0.18, 0.66, 1.2);
                 animation-direction: alternate-reverse;
 
                 button {
@@ -168,21 +171,36 @@ body {
 
 @keyframes jogo {
     0% {
-        transform: translateY(10px)  rotateY(13deg);
+        transform: translateY(10px) rotateY(13deg);
     }
 
     100% {
-        transform: translateY(-10px)  rotateY(10deg);
+        transform: translateY(-10px) rotateY(10deg);
     }
 
 }
+
 @keyframes jogo2 {
     0% {
-        transform: translateY(10px)  rotateY(-7deg);
+        transform: translateY(10px) rotateY(-7deg);
     }
 
     100% {
-        transform: translateY(-10px)  rotateY(-3deg);
+        transform: translateY(-10px) rotateY(-3deg);
     }
 
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }

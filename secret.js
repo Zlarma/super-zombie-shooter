@@ -33,7 +33,7 @@ function SEGREDO() {
     let button = document.createElement("button");
     button.id = "segredo";
     button.innerText = "segredo";
-    
+
     // Style the button!!!!!!!!!   >:C
 
 
@@ -43,7 +43,7 @@ function SEGREDO() {
         // window.location = './jogoSECRETO.html'
         secretSelect.play()
         alert("Funcionou")
-            
+
         // alert("AVISO: Esse modo pode causar ataques de epilepsia, se você sofre com isso, aperte 'F5' ou abandone essa página imediatamente.")
     });
 
