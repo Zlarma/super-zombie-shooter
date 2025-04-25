@@ -55,7 +55,7 @@ body {
             height: 300px;
             width: 300px;
             margin-top: -400px;
-            perspective: 200px;
+            perspective: 170px;
 
             .play {
                 padding: 30px;
@@ -105,7 +105,7 @@ body {
                 border-radius: 10px;
                 filter: drop-shadow(-30px 30px 10px rgba(0, 0, 0, 0.74));
                 margin-top: 500px;
-                margin-left: 600px;
+                margin-left: 500px;
 
                 animation-name: jogo2;
                 animation-duration: 1s;
@@ -186,11 +186,11 @@ body {
 
 @keyframes jogo2 {
     0% {
-        transform: translateY(10px) rotateY(-7deg);
+        transform: translateY(10px) rotateY(-6.5deg);
     }
 
     100% {
-        transform: translateY(-10px) rotateY(-3deg);
+        transform: translateY(-10px) rotateY(-5deg);
     }
 
 }
@@ -222,4 +222,43 @@ body {
     width: 300px;
     opacity: 1;
     transition: opacity 0.2s ease-out;
+}
+
+/* DARK VIBE START */
+body.dark-mode {
+    background-color: #111;
+    background-image: none !important;
+    color: #aaa;
+    filter: grayscale(50%) brightness(60%) blur(1px);
+}
+
+body.dark-mode #ZOMBIE,
+body.dark-mode #SUPER {
+    animation-play-state: paused !important;
+    opacity: 0.3;
+}
+
+body.dark-mode a,
+body.dark-mode button {
+    filter: grayscale(100%) brightness(50%);
+}
+
+#ativa {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    font-size: 30px;
+    border: 2px black solid;
+    border-radius: 30px;
+    z-index: 1;
+    padding: 10px;
+    filter: grayscale(0%) brightness(150%) blur(0px) !important;
+    filter: drop-shadow(0px 0px 30px rgb(255, 255, 255)) !important;
+}
+
+#ativa:hover {
+    filter: brightness(120%) drop-shadow(0px 0px 10px rgb(255, 255, 255)) contrast(120%);
+    background-color: rgb(255, 255, 255);
 }
