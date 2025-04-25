@@ -17,26 +17,54 @@
 
         <div class="botoes">
             <div class="play">
-                <a href="./jogo.html">Jogar</a>
+                <a id="jogar" href="./jogo.html">Jogar</a>
             </div>
             <div class="tuto">
                 <button>Tutorial</button>
             </div>
 
-            <img id="zombie-flash" src="./assets/zombie1.png" alt="Zombie Flash" />
-        
+            <img id="zombie-flash" src="./assets/icone.png" alt="Zombie Flash" />
+
         </div>
+
+        <button id="ativa">Botão legal</button>
 
 </body>
 
 </html>
 
 <script>
-    alert("Pequena pausa para rodar a música de menu...\n\n\n\nAperte `Ok` para ver o menu!!! ;)")
+    // alert("Pequena pausa para rodar a música de menu...\n\n\n\nAperte `Ok` para ver o menu!!! ;)")
 
-    let tuto = document.querySelector('.tuto button');
+    let tuto = document.querySelector('.tuto');
+    let jogar = document.querySelector('.play');
+    let tutoB = document.querySelector('.tuto button');
+    
+    let menuSong = new Audio(`./assets/musics/menu.mp3`);
+    menuSong.loop = true;
 
-    tuto.addEventListener('click', function () {
+    let zombie = document.getElementById('ZOMBIE');
+    let superTitle = document.getElementById('SUPER');
+    let ativa = document.getElementById('ativa');
+
+    zombie.style.animationPlayState = 'paused';
+    jogar.style.animationPlayState = 'paused';
+    tuto.style.animationPlayState = 'paused';
+    superTitle.style.animationPlayState = 'paused';
+    document.body.classList.add('dark-mode');
+
+    ativa.addEventListener("click", () => {
+        document.body.classList.remove('dark-mode');
+        menuSong.play();
+        zombie.style.animationPlayState = 'running';
+        superTitle.style.animationPlayState = 'running';
+        tuto.style.animationPlayState = 'running';
+        jogar.style.animationPlayState = 'running';
+        ativa.style.display = 'none';
+    })
+
+
+    tutoB.addEventListener('click', function () {
         alert("TUTORIAL???\n\nO jogo é literalmente clicar nos zumbis para eles morrerem!!!\nMas, não erre o tiro, você perde vida se errar.")
     });
 
