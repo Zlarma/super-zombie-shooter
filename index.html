@@ -39,9 +39,8 @@
     let tuto = document.querySelector('.tuto');
     let jogar = document.querySelector('.play');
     let tutoB = document.querySelector('.tuto button');
-    
+
     let menuSong = new Audio(`./assets/musics/menu.mp3`);
-    menuSong.loop = true;
 
     let zombie = document.getElementById('ZOMBIE');
     let superTitle = document.getElementById('SUPER');
@@ -54,8 +53,17 @@
     document.body.classList.add('dark-mode');
 
     ativa.addEventListener("click", () => {
-        document.body.classList.remove('dark-mode');
+        menuSong.addEventListener('timeupdate', function () {
+            const buffer = 0.25; // seconds, little safety margin
+            if (menuSong.currentTime > menuSong.duration - buffer) {
+                menuSong.currentTime = 0;
+                menuSong.play();
+            }
+        });
+
         menuSong.play();
+
+        document.body.classList.remove('dark-mode');
         zombie.style.animationPlayState = 'running';
         superTitle.style.animationPlayState = 'running';
         tuto.style.animationPlayState = 'running';
