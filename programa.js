@@ -6,6 +6,21 @@ let zom3 = new Zombie(300, 400, 100, 100, "./assets/zumbi/zumbi_1.png")
 
 let player = new Player(800, 500, 500, 300, "./assets/idle_1.png")
 
+let gameSong = new Audio("./assets/musics/SuperZombieShooter.wav")
+
+gameSong.volume = 0.7;
+
+gameSong.addEventListener('timeupdate', function () {
+    const buffer = 0.1; // seconds, little safety margin
+    if (gameSong.currentTime > gameSong.duration - buffer) {
+        gameSong.currentTime = 0;
+        gameSong.play();
+    }
+});
+
+gameSong.play();
+
+
 let t1 = new Text()
 let t2 = new Text()
 let t3 = new Text()
@@ -150,7 +165,11 @@ let main = () => {
     if (player.vida <= 0) {
         gameOver = true
         exibeGameOver()
+        gameSong.pause()
+        gameSong.currentTime = 0
         return
+    }else{
+        gameSong.play()
     }
     zom1.attack()
     zom2.attack()
