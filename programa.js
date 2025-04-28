@@ -91,7 +91,42 @@ restartButton.addEventListener('click', () => {
     main()
 })
 
+let tempoVida = 1
+let frameVida  = 1
+
+let vidaAnim = () => {
+    const vidaImg = new Image()
+    if(player.vida >= 60){
+        tempoVida += 1
+        if (tempoVida % 5 == 0) {
+            frameVida += 1
+        }
+        if (frameVida > 12) {
+            frameVida = 1
+        }
+        vidaImg.src = `./assets/vida/normal/normal${frameVida}.png`
+    } else if(player.vida >= 30){
+        if (tempoVida % 5 == 0) {
+            frameVida += 1
+        }
+        if (frameVida > 12) {
+            frameVida = 1
+        }
+        vidaImg.src = `./assets/vida/medium/medium${frameVida}.png`
+    } else if(player.vida > 0){
+        if (tempoVida % 5 == 0) {
+            frameVida += 1
+        }
+        if (frameVida > 12) {
+            frameVida = 1
+        }
+        vidaImg.src = `./assets/vida/low/low${frameVida}.png`
+    }
+    tela.drawImage(vidaImg, 10, 10, 100, 100); // Desenha a imagem (x: 0, y: 10, largura: 20, altura: 20)
+}
+
 let exibeGameOver = () => {
+    
     tela.fillStyle = "rgba(0, 0, 0, 0.8)"
     tela.fillRect(0, 0, 1500, 800)
 
@@ -133,10 +168,11 @@ let exibeGameOver = () => {
 }
 
 let desenha = () => {
+
     tela.fillStyle = "white"
     tela.font = "24px Arial"
-    tela.fillText(`Vida: ${player.vida}`, 20, 30)
-    tela.fillText(`Pontos: ${player.pts}`, 20, 60)
+    tela.fillText(`Vida: ${player.vida}`, 120, 50)
+    tela.fillText(`Pontos: ${player.pts}`, 120, 90)
 
     zom1.des_img(tela)
     zom2.des_img(tela)
@@ -186,6 +222,7 @@ let main = () => {
         gameOverSong.pause()
         gameOverSong.currentTime = 0
     }
+    vidaAnim()
     zom1.attack()
     zom2.attack()
     zom3.attack()
