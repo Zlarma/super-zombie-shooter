@@ -92,11 +92,13 @@ restartButton.addEventListener('click', () => {
 })
 
 let tempoVida = 1
-let frameVida  = 1
+let frameVida = 1
 
 let vidaAnim = () => {
     const vidaImg = new Image()
-    if(player.vida >= 60){
+    tempoVida += 1
+
+    if (player.vida >= 60) {
         tempoVida += 1
         if (tempoVida % 5 == 0) {
             frameVida += 1
@@ -105,7 +107,7 @@ let vidaAnim = () => {
             frameVida = 1
         }
         vidaImg.src = `./assets/vida/normal/normal${frameVida}.png`
-    } else if(player.vida >= 30){
+    } else if (player.vida >= 30) {
         if (tempoVida % 5 == 0) {
             frameVida += 1
         }
@@ -113,7 +115,7 @@ let vidaAnim = () => {
             frameVida = 1
         }
         vidaImg.src = `./assets/vida/medium/medium${frameVida}.png`
-    } else if(player.vida > 0){
+    } else if (player.vida > 0) {
         if (tempoVida % 5 == 0) {
             frameVida += 1
         }
@@ -126,7 +128,7 @@ let vidaAnim = () => {
 }
 
 let exibeGameOver = () => {
-    
+
     tela.fillStyle = "rgba(0, 0, 0, 0.8)"
     tela.fillRect(0, 0, 1500, 800)
 
@@ -212,12 +214,12 @@ let main = () => {
         gameOverSong.play()
 
         exibeGameOver()
-        
+
         gameSong.pause()
         gameSong.currentTime = 0
-        
+
         return
-    }else{
+    } else {
         gameSong.play()
         gameOverSong.pause()
         gameOverSong.currentTime = 0
